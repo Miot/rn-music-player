@@ -18,7 +18,6 @@ export const TrackListItem = ({ track }: TrackListItemProps) => {
 					<FastImage
 						source={{
 							uri: track.image ?? unknownTrackImageUri,
-							headers: { Authorization: 'someAuthToken' },
 						}}
 						style={{
 							...styles.trackArtworkImage,
