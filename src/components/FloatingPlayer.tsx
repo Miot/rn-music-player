@@ -3,6 +3,7 @@ import { unknownTrackImageUri } from '@/constants/images'
 import { useLastActiveTrack } from '@/hooks/useLastActiveTrack'
 import { defaultStyles } from '@/styles'
 import FastImage from '@preflower/react-native-web-fast-image'
+import { useRouter } from 'expo-router'
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { useActiveTrack } from 'react-native-track-player'
 import { MovingText } from './MovingText'
@@ -12,10 +13,15 @@ export const FloatingPlayer = ({ style }: { style: ViewStyle }) => {
 	const lastActiveTrack = useLastActiveTrack()
 	const displayedTrack = activeTrack ?? lastActiveTrack
 
+	const router = useRouter()
+	const handlePress = () => {
+		router.navigate('/player')
+	}
+
 	if (!displayedTrack) return null
 
 	return (
-		<TouchableOpacity style={[style, styles.container]} activeOpacity={0.9}>
+		<TouchableOpacity onPress={handlePress} style={[style, styles.container]} activeOpacity={0.9}>
 			<>
 				<FastImage
 					source={{ uri: displayedTrack.artwork ?? unknownTrackImageUri }}
