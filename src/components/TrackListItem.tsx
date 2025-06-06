@@ -1,10 +1,11 @@
 import { unknownTrackImageUri } from '@/constants/images'
 import { colors, fontSize } from '@/constants/tokens'
 import { defaultStyles } from '@/styles'
-import { Entypo } from '@expo/vector-icons'
+import { Entypo, Ionicons } from '@expo/vector-icons'
 import FastImage from '@preflower/react-native-web-fast-image'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import { Track, useActiveTrack } from 'react-native-track-player'
+import { Track, useActiveTrack, useIsPlaying } from 'react-native-track-player'
+import { ScaleLoader } from 'react-spinners'
 
 export type TrackListItemProps = {
 	track: Track
@@ -13,6 +14,7 @@ export type TrackListItemProps = {
 
 export const TrackListItem = ({ track, onTrackSelect: handleTrackSelect }: TrackListItemProps) => {
 	const isActiveTrack = useActiveTrack()?.url === track.url
+	const { playing } = useIsPlaying()
 
 	return (
 		<TouchableHighlight onPress={() => handleTrackSelect(track)}>
@@ -27,6 +29,23 @@ export const TrackListItem = ({ track, onTrackSelect: handleTrackSelect }: Track
 							opacity: isActiveTrack ? 0.6 : 1,
 						}}
 					/>
+
+					{isActiveTrack &&
+						(playing ? (
+							<ScaleLoader
+								height={15}
+								width={2}
+								color={colors.icon}
+								style={styles.trackPlayingIconIndicator}
+							/>
+						) : (
+							<Ionicons
+								name="play"
+								size={24}
+								color={colors.icon}
+								style={styles.trackPauseIconIndicator}
+							/>
+						))}
 				</View>
 
 				<View
@@ -85,5 +104,15 @@ const styles = StyleSheet.create({
 		color: colors.textMuted,
 		fontSize: 14,
 		marginTop: 4,
+	},
+	trackPlayingIconIndicator: {
+		position: 'absolute',
+		top: 16,
+		left: 10,
+	},
+	trackPauseIconIndicator: {
+		position: 'absolute',
+		top: 12,
+		left: 14,
 	},
 })

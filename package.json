@@ -38,6 +38,7 @@
     "react-native-track-player": "^4.1.1",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
+    "react-spinners": "^0.17.0",
     "shaka-player": "^4.15.0"
   },
   "devDependencies": {

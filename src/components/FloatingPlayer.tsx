@@ -1,15 +1,16 @@
 import { PlayPauseButton, SkipToNextButton } from '@/components/PlayerControls'
 import { unknownTrackImageUri } from '@/constants/images'
+import { useLastActiveTrack } from '@/hooks/useLastActiveTrack'
 import { defaultStyles } from '@/styles'
 import FastImage from '@preflower/react-native-web-fast-image'
-import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
-import { Track, useActiveTrack } from 'react-native-track-player'
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { useActiveTrack } from 'react-native-track-player'
+import { MovingText } from './MovingText'
 
 export const FloatingPlayer = ({ style }: { style: ViewStyle }) => {
 	const activeTrack = useActiveTrack()
-	const displayedTrack: Track = activeTrack ?? {
-		title: 'THis is just a song',
-	}
+	const lastActiveTrack = useLastActiveTrack()
+	const displayedTrack = activeTrack ?? lastActiveTrack
 
 	if (!displayedTrack) return null
 
@@ -22,11 +23,15 @@ export const FloatingPlayer = ({ style }: { style: ViewStyle }) => {
 				></FastImage>
 
 				<View style={styles.trackTitleContainer}>
-					<Text style={styles.trackTitle}>{displayedTrack.title}</Text>
+					<MovingText
+						style={styles.trackTitle}
+						text={displayedTrack.title ?? ''}
+						animationThreshold={25}
+					></MovingText>
 				</View>
 
 				<View style={styles.trackControlsContainer}>
-					<PlayPauseButton iconSize={24} />
+					<PlayPauseButton iconSize={22} />
 					<SkipToNextButton iconSize={22} />
 				</View>
 			</>
