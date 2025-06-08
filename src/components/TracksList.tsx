@@ -5,18 +5,20 @@ import FastImage from '@preflower/react-native-web-fast-image'
 import { useRef } from 'react'
 import { FlatList, FlatListProps, Text, View } from 'react-native'
 import TrackPlayer, { Track } from 'react-native-track-player'
+import { QueueControls } from './QueueControls'
 import { TrackListItem } from './TrackListItem'
 
 export type TracksListProps = Partial<FlatListProps<Track>> & {
 	id: string
 	tracks: Track[]
+	hideQueueControls?: boolean
 }
 
 const ItemDivider = () => {
 	return <View style={{ ...utilsStyles.itemSeparator, marginVertical: 9, marginLeft: 60 }} />
 }
 
-export const TracksList = ({ id, tracks, ...props }: TracksListProps) => {
+export const TracksList = ({ id, tracks, hideQueueControls = true, ...props }: TracksListProps) => {
 	const queueOffset = useRef(0)
 	const { activeQueueId, setActiveQueueId } = useQueue()
 
@@ -48,6 +50,11 @@ export const TracksList = ({ id, tracks, ...props }: TracksListProps) => {
 		<FlatList
 			data={tracks}
 			contentContainerStyle={{ paddingTop: 10, paddingBottom: 128 }}
+			ListHeaderComponent={
+				hideQueueControls ? undefined : (
+					<QueueControls tracks={tracks} style={{ paddingBottom: 20 }} />
+				)
+			}
 			ListFooterComponent={tracks.length ? ItemDivider : null}
 			ItemSeparatorComponent={ItemDivider}
 			ListEmptyComponent={

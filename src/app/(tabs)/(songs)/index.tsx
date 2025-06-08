@@ -30,6 +30,7 @@ const SongsScreen = () => {
 					id={generateTracksListId('songs', search)}
 					tracks={filterSongs}
 					scrollEnabled={false}
+					hideQueueControls={false}
 				/>
 			</ScrollView>
 		</View>
