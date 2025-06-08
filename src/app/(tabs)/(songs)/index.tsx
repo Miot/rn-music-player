@@ -1,21 +1,22 @@
-import library from '@/assets/data/library.json'
 import { TracksList } from '@/components/TracksList'
 import { screenPadding } from '@/constants/tokens'
 import { trackTitleFilter } from '@/helpers/filter'
 import { useNavigationSearch } from '@/hooks/useNavigationSearch'
+import { useTracks } from '@/store/library'
 import { defaultStyles } from '@/styles'
 import { useMemo } from 'react'
 import { ScrollView, View } from 'react-native'
 
 const SongsScreen = () => {
+	const tracks = useTracks()
 	const search = useNavigationSearch({
 		searchBarOptions: {
 			placeholder: 'Find in songs',
 		},
 	})
 	const filterSongs = useMemo(() => {
-		if (!search) return library
-		return library.filter(trackTitleFilter(search))
+		if (!search) return tracks
+		return tracks.filter(trackTitleFilter(search))
 	}, [search])
 
 	return (
