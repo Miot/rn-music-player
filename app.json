@@ -1,46 +1,55 @@
 {
-	"expo": {
-		"name": "rn-music-player",
-		"slug": "rn-music-player",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/icon.png",
-		"scheme": "rn-music-player",
-		"userInterfaceStyle": "dark",
-		"newArchEnabled": true,
-		"ios": {
-			"supportsTablet": true,
-			"infoPlist": {
-				"UIBackgroundModes": ["audio"]
-			}
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/adaptive-icon.png",
-				"backgroundColor": "#000"
-			},
-			"edgeToEdgeEnabled": true
-		},
-		"web": {
-			"bundler": "metro",
-			"output": "static",
-			"favicon": "./assets/favicon.png"
-		},
-		"plugins": [
-			"expo-router",
-			[
-				"expo-splash-screen",
-				{
-					"image": "./assets/splash.png",
-					"imageWidth": 200,
-					"resizeMode": "contain",
-					"backgroundColor": "#000"
-				}
-			]
-		],
-		"experiments": {
-			"typedRoutes": true,
-			"tsconfigPaths": true
-		}
-	}
+  "expo": {
+    "name": "rn-music-player",
+    "slug": "rn-music-player",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "rn-music-player",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.miocat.rnmusicplayer"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#000"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "tsconfigPaths": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f503b823-6aea-495c-9df4-aeafca78c28a"
+      }
+    }
+  }
 }
