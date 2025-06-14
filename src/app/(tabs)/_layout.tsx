@@ -55,7 +55,7 @@ const TabsNavigation = () => {
 				<Tabs.Screen
 					name="(songs)"
 					options={{
-						title: 'Favorites',
+						title: 'Songs',
 						tabBarIcon: ({ color }) => (
 							<Ionicons name="musical-notes-sharp" size={24} color={color} />
 						),

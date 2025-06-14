@@ -1,5 +1,6 @@
 import library from '@/assets/data/library.json'
-import { Artist, TrackWithPlaylist } from '@/helpers/types'
+import { unknownTrackImageUri } from '@/constants/images'
+import { Artist, Playlist, TrackWithPlaylist } from '@/helpers/types'
 import { Track } from 'react-native-track-player'
 import { create } from 'zustand'
 
@@ -9,7 +10,7 @@ interface LibrayState {
 	addToPlaylist: (track: Track, playlistName: string) => void
 }
 
-const useLibraryStore = create<LibrayState>((set) => ({
+const useLibraryStore = create<LibrayState>(() => ({
 	tracks: library,
 	toggleTrackFavorite: () => {},
 	addToPlaylist: () => {},
@@ -42,3 +43,27 @@ export const useArtists = () =>
 
 		return acc
 	}, [] as Artist[])
+
+export const usePlaylists = () => {
+	const playlists = useTracks().reduce((acc, track) => {
+		track.playlist?.forEach((playlistName) => {
+			const existing = acc.find((playlist) => playlist.name === playlistName)
+
+			if (existing) {
+				existing.tracks.push(track)
+			} else {
+				acc.push({
+					name: playlistName,
+					tracks: [track],
+					artworkPreview: track.artwork ?? unknownTrackImageUri,
+				})
+			}
+		})
+
+		return acc
+	}, [] as Playlist[])
+
+	const addToPlaylist = useLibraryStore((state) => state.addToPlaylist)
+
+	return { playlists, addToPlaylist }
+}
