@@ -6,6 +6,7 @@ import { PlayerVolumebar } from '@/components/PlayerVolumebar'
 import { unknownTrackImageUri } from '@/constants/images'
 import { colors, fontSize, screenPadding } from '@/constants/tokens'
 import { usePlayerBackground } from '@/hooks/usePlayerBackground'
+import { useTrackPlayerFavorite } from '@/hooks/useTrackPlayerFavorite'
 import { defaultStyles, utilsStyles } from '@/styles'
 import { FontAwesome } from '@expo/vector-icons'
 import FastImage from '@preflower/react-native-web-fast-image'
@@ -18,8 +19,8 @@ const PlayerScreen = () => {
 	const activeTrack = useActiveTrack()
 	const { top, bottom } = useSafeAreaInsets()
 	const { imageColors } = usePlayerBackground(activeTrack?.artwork ?? unknownTrackImageUri)
-	const isFavorite = false
-	const toggleFavorite = () => {}
+
+	const { isFavorite, toggleFavorite } = useTrackPlayerFavorite()
 
 	if (!activeTrack) {
 		return (

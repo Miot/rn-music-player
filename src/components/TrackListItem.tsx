@@ -1,3 +1,5 @@
+import { StopPropagation } from '@/components/StopPropagation'
+import { TracksShortcutsMenu } from '@/components/TrackShortcutsMenu'
 import { unknownTrackImageUri } from '@/constants/images'
 import { colors, fontSize } from '@/constants/tokens'
 import { defaultStyles } from '@/styles'
@@ -74,7 +76,11 @@ export const TrackListItem = ({ track, onTrackSelect: handleTrackSelect }: Track
 						)}
 					</View>
 
-					<Entypo name="dots-three-horizontal" size={18} color={colors.icon}></Entypo>
+					<StopPropagation>
+						<TracksShortcutsMenu track={track}>
+							<Entypo name="dots-three-horizontal" size={18} color={colors.icon}></Entypo>
+						</TracksShortcutsMenu>
+					</StopPropagation>
 				</View>
 			</View>
 		</TouchableHighlight>

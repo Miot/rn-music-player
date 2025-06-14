@@ -13,12 +13,14 @@
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@preflower/react-native-web-fast-image": "^0.1.0",
+    "@react-native-menu/menu": "^1.2.3",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "expo": "~53.0.9",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.6",
+    "expo-dev-client": "~5.2.0",
     "expo-font": "~13.3.1",
     "expo-haptics": "~14.1.4",
     "expo-linear-gradient": "~14.1.5",
@@ -44,8 +46,7 @@
     "react-spinners": "^0.17.0",
     "shaka-player": "^4.15.0",
     "ts-pattern": "^5.7.1",
-    "zustand": "^5.0.5",
-    "expo-dev-client": "~5.2.0"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
